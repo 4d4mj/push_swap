@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "random": "c",
+        "checker.h": "c",
+        "get_next_line_bonus.h": "c",
+        "checker.C": "cpp",
+        "push_swap.h": "c",
+        "libft.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
