@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   operations_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/29 21:49:12 by ajabado           #+#    #+#             */
-/*   Updated: 2024/06/29 21:49:12 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/01 00:37:40 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/01 00:37:40 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void	push(t_list **src, t_list **dst)
+void	ft_rb(t_stack **b, int j)
 {
-	t_list	*node;
+	t_stack	*tmp;
 
-	if (!src || !dst || !(*src))
+	if (!*b || !(*b)->next)
 		return ;
-	node = *src;
-	if ((*src)->next)
-		node->next->prev = NULL;
-	else
-		(*src)->prev = NULL;
-	*src = (*src)->next;
-	node->next = NULL;
-	ft_lstadd_front(dst, node);
+	tmp = *b;
+	*b = ft_stack_last(*b);
+	(*b)->next = tmp;
+	*b = tmp->next;
+	tmp->next = NULL;
+	if (j == 0)
+		write(1, "rb\n", 3);
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	ft_sb(t_stack **b, int j)
 {
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
+	t_stack	*tmp;
 
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	if (!*b || !((*b)->next))
+		return ;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = (*b)->next;
+	(*b)->next = tmp;
+	if (j == 0)
+		write(1, "sb\n", 3);
 }

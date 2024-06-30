@@ -1,45 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_stack_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/29 21:49:19 by ajabado           #+#    #+#             */
-/*   Updated: 2024/06/29 21:49:19 by ajabado          ###   ########.fr       */
+/*   Created: 2024/06/30 15:32:04 by ajabado           #+#    #+#             */
+/*   Updated: 2024/06/30 15:32:04 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void	rotate(t_list **stack)
+void	ft_stack_clear(t_stack **stack)
 {
-	t_list	*node;
+	t_stack	*tmp;
 
-	if (!stack || !(*stack) || !((*stack)->next))
+	if (!stack)
 		return ;
-	node = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	node->next = NULL;
-	ft_lstadd_back(stack, node);
-}
-
-void	ra(t_list **stack)
-{
-	rotate(stack);
-	ft_printf("ra\n");
-}
-
-void	rb(t_list **stack)
-{
-	rotate(stack);
-	ft_printf("rb\n");
-}
-
-void	rr(t_list **stack_a, t_list **stack_b)
-{
-	rotate(stack_a);
-	rotate(stack_b);
-	ft_printf("rr\n");
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		(*stack)->nbr = 0;
+		free(*stack);
+		*stack = tmp;
+	}
 }
