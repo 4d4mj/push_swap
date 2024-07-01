@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 21:26:50 by ajabado           #+#    #+#             */
-/*   Updated: 2024/06/30 21:26:50 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/01 20:04:25 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
-
-static void	ft_error_ch(void)
-{
-	write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
 
 static void	ft_check_rr(t_stack **a, t_stack **b, char *line)
 {
@@ -26,6 +20,14 @@ static void	ft_check_rr(t_stack **a, t_stack **b, char *line)
 		ft_rrb(b, 1);
 	else if (line[2] == 'r')
 		ft_rrr(a, b, 1);
+}
+
+static void	ft_free_error(t_stack **a, t_stack **b, char *line)
+{
+	free(line);
+	ft_stack_clear(a);
+	ft_stack_clear(b);
+	ft_error();
 }
 
 static char	*ft_check(t_stack **a, t_stack **b, char *line)
@@ -49,7 +51,7 @@ static char	*ft_check(t_stack **a, t_stack **b, char *line)
 	else if (line[0] == 's' && line[1] == 's' && line[2] == '\n')
 		ft_ss(a, b, 1);
 	else
-		ft_error_ch();
+		ft_free_error(a, b, line);
 	return (get_next_line(0));
 }
 
@@ -82,8 +84,8 @@ int	main(int argc, char **argv)
 	a = ft_parse(argc, argv);
 	if (!a || ft_check_dup(a))
 	{
-		ft_stack_clear (&a);
-		ft_error_ch();
+		ft_stack_clear(&a);
+		ft_error();
 	}
 	line = get_next_line(0);
 	if (!line && !ft_is_sorted(a))

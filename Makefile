@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+         #
+#    By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/30 15:46:23 by ajabado           #+#    #+#              #
-#    Updated: 2024/06/30 15:46:23 by ajabado          ###   ########.fr        #
+#    Updated: 2024/07/01 19:51:19 by ajabado          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ main.c \
 )
 
 # checker
-CHECKER = checker_OS
+CHECKER = checker
 OBJS_CHECKER = $(SRC_CHECKER:.c=.o)
 SRC_CHECKER = $(addprefix $(SRC_DIR)/checker/, \
 checker.c \
